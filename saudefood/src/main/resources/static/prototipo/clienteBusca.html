@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>BlueFood</title> 
+ <link rel="stylesheet" type="text/css" href="css/bf_estiloSistema.css">
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
+            <a href="">
+            <img src="imagens/logo.PNG" id="imgLogotipoSitema" >
+        </a>
+        </div>
+        
+        <div id="divUsuarioLogado">
+            Ola nome do usuario
+            <br>
+            <img src="imagens/icone_carrinho.PNG" id="imgIconeCarrinho">
+        </div>
+    </header>
+    <br/><br/>       
+    <!--cabecalho fim-->
+
+    
+    <div>
+        <h1>É Hora de Rangar !</h1>
+        <form method="POST" action="">
+            <fieldset>
+                <label for="busca">Buscar :</label><br/>
+                <input type="text" name="busca" id="busca" placeholder="Buscar..."/>
+                <input type="button" value="Procurar"/>
+            </fieldset>
+
+        </form>
+    </div>
+
+    <div id="divCategoriasComidaGeral">
+        <div id="divCategoriaComidasOpcao">
+            <a href="#">
+                <img src="imagens/categorias/003-meat.png" id="imgIconeChurrasco"><br/>
+                <span>Churrasco</span>
+
+            </a>
+        </div>
+        
+
+        <div id="divCategoriaComidasOpcao">
+            <a href="#">
+                <img src="imagens/categorias/001-pizza.png" id = "imgIconePizza"><br/>
+                <span>Pizza</span>
+            </a>
+        </div>
+
+        <div id="divCategoriaComidasOpcao">
+            <a href="#">
+                <img src="imagens/categorias/002-burger.png" id="imgIconeHamburguer"><br/>
+                <span>Hamburguer</span>
+            </a>
+        </div>
+
+        <div id="divCategoriaComidasOpcao">
+            <a href="#">
+                <img src="imagens/categorias/004-lettuce.png" id="imgIconeSalada"><br/>
+                <span>Salada</span>
+            </a>
+        </div>
+
+        <div id="divCategoriaComidasOpcao">
+            <a href="#">
+                <img src="imagens/categorias/005-cake.png" id="imgIconeSobremessa"><br/>
+                <span>Sobremesa</span>
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <h1>Resultados</h1>
+        <fieldset>
+            <legend>Filtros</legend>
+            <input type="button" value="Entrega Gratis"><br/>
+            <input type="button" value="Maior Preço"> 
+            <input type="button" value="Menor Preço"><br/>
+            <input type="button" value="Maior taxa">  
+            <input type="button" value="Menor Taxa"><br/>
+            <input type="button" value="Maior Tempo">
+             <input type="button" value="Menor Tempo" id="inputSelecionado"><br/>
+            
+        </fieldset>
+    </div>
+
+    <div>
+
+        <div id="divRestauranteOpacao">
+            <a href="clienteRestaurante.html">
+                <img src="imagens/001-cafe-da-manha.png" id="imgRestauranteOpcao"/>
+                <br/>
+                <span id="spanNomeRestauranteOpcao">Nome do Restaurante</span>
+                <br/>
+                <span>Categoria de comida deste restaurante</span>
+                <br/>
+                <span>Tempo medio de entrega : 40 min</span>
+                <br>
+                <span>Taxa de entrega  R$ 15,00 reais </span>
+            </a>
+        </div>
+        <br/><br/>
+
+        <div id="divRestauranteOpacao">
+            <a href="clienteRestaurante.html">
+                <img src="imagens/001-cafe-da-manha.png" id="imgRestauranteOpcao"/>
+                <br/>
+                <span id="spanNomeRestauranteOpcao">Nome do Restaurante</span>
+                <br/>
+                <span>Categoria de comida deste restaurante</span>
+                <br/>
+                <span>Tempo medio de entrega : 40 min</span>
+                <br>
+                <span>Taxa de entrega  R$ 15,00 reais </span>
+            </a>
+        </div>
+        <br/><br/>
+
+        <div id="divRestauranteOpacao">
+            <a href="clienteRestaurante.html">
+                <img src="imagens/001-cafe-da-manha.png" id="imgRestauranteOpcao"/>
+                <br/>
+                <span id="spanNomeRestauranteOpcao">Nome do Restaurante</span>
+                <br/>
+                <span>Categoria de comida deste restaurante</span>
+                <br/>
+                <span>Tempo medio de entrega : 40 min</span>
+                <br>
+                <span>Taxa de entrega  R$ 15,00 reais </span>
+            </a>
+        </div>
+        <br/><br/>
+    </div>
+    <input type="button" value="Voltar" onclick="location.href = 'clienteHome.html';">
+
+    <!--Róda pé inicio-->
+    
+</body>
+
+</html>
