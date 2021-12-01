@@ -1,5 +1,8 @@
 package br.com.saudefood.util;
 
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 //import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,8 +21,8 @@ public class StringUtils {
 			return null;
 		}
 		
-		//PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		//return encoder.encode(rawString);
-		return rawString;
+		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		return encoder.encode(rawString);
+		
 	}
 }
