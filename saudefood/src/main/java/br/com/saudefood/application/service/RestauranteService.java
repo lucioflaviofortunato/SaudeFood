@@ -1,4 +1,4 @@
-package br.com.saudefood.application;
+package br.com.saudefood.application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

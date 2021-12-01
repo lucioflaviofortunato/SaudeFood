@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.saudefood.application.ClienteService;
-import br.com.saudefood.application.RestauranteService;
+import br.com.saudefood.application.service.ClienteService;
+import br.com.saudefood.application.service.RestauranteService;
 import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.restaurante.CategoriaRestauranteRepository;
 import br.com.saudefood.domain.restaurante.Restaurante;
@@ -54,7 +54,7 @@ public class PublicController {
 			try {
 				clienteService.saveCliente(cliente);
 				model.addAttribute("msg", "Cliente gravado com sucesso");
-			} catch (br.com.saudefood.application.ValidationException e) {
+			} catch (br.com.saudefood.application.service.ValidationException e) {
 				errors.rejectValue("email", null, e.getMessage());
 				
 			}
@@ -77,7 +77,7 @@ public class PublicController {
 			try {
 				restauranteService.saveRestaurante(restaurante);
 				model.addAttribute("msg", "Restaurante gravado com sucesso");
-			} catch (br.com.saudefood.application.ValidationException e) {
+			} catch (br.com.saudefood.application.service.ValidationException e) {
 				errors.rejectValue("email", null, e.getMessage());
 				
 			}
