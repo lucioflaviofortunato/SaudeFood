@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 	
-	@GetMapping(path = {"/login","/"})
+	@GetMapping(path={"/login","/"})
 	public String login() {
 		return "login";
 	}
 	
-	@GetMapping(path = "/login-error")
+	@GetMapping(path={"/login-error"})
 	public String loginError(Model model) {
 		model.addAttribute("msg", "Credenciais invalidas");
 		return "login";
