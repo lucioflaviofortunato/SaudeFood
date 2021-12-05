@@ -110,6 +110,10 @@ img#imgIconeSobremessa
 {
     height: 50px;
 }
+img#imgIconeJaponesa
+{
+    height: 50px;
+}
 
 fieldset
 {
@@ -202,6 +206,7 @@ div#divCategoriaComidasOpcao
   
     float: left;
     height: 130px;
+     
 }
 
 div#divCategoriasComidaGeral
@@ -217,6 +222,12 @@ input#inputSelecionado
     border-color: #1e9bde;
 }
 
+
+img#imgCategoriaComida{
+	height: 50px
+}
+
+
 img#imgRestauranteOpcao
 {
     height: 130px;
@@ -227,7 +238,7 @@ span#spanNomeRestauranteOpcao{
     text-transform: uppercase;
 }
 
-div#divRestauranteOpacao
+div#divRestauranteOpcao
 {
     margin-left: auto;
     margin-right: auto;

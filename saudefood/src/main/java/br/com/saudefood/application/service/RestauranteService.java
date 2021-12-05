@@ -1,5 +1,10 @@
 package br.com.saudefood.application.service;
 
+import java.util.Iterator;
+import java.util.List;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +13,11 @@ import br.com.saudefood.ImageService;
 import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.cliente.ClienteRepository;
 import br.com.saudefood.domain.restaurante.Restaurante;
+import br.com.saudefood.domain.restaurante.RestauranteComparator;
 import br.com.saudefood.domain.restaurante.RestauranteRepository;
+import br.com.saudefood.domain.restaurante.SearchFilter;
+import br.com.saudefood.domain.restaurante.SearchFilter.SearchType;
+import br.com.saudefood.util.SecurityUtils;
 
 @Service
 public class RestauranteService {
@@ -63,6 +72,38 @@ public class RestauranteService {
 		
 		
 		return true;
+	}
+	
+	public List<Restaurante> search(SearchFilter filter){
+		List<Restaurante> restaurantes;
+		
+		if(filter.getSearchType() == SearchType.Texto) {
+		restaurantes = restauranteRepository.findByNomeIgnoreCaseContaining(filter.getTexto());
+		
+		} else if(filter.getSearchType() == SearchType.Categoria) {
+			restaurantes = restauranteRepository.findByCategorias_Id(filter.getCategoriaId());
+		}else {
+			throw new IllegalStateException("O tipo de busca " + filter.getSearchType() + "não é permitido");
+		}
+		
+		Iterator<Restaurante> it = restaurantes.iterator();
+		
+		while (it.hasNext()) {
+			Restaurante restaurante = it.next();
+		double taxaEntrega = restaurante.getTaxaEntrega().doubleValue();
+		
+		if(filter.isEntregaGratis() && taxaEntrega > 0
+				|| !filter.isEntregaGratis() && taxaEntrega == 0) {
+			it.remove();
+		}
+		
+			
+		
+		}
+		
+		RestauranteComparator comparator = new RestauranteComparator(filter, SecurityUtils.loggedCliente().getCep());
+		restaurantes.sort(comparator);
+		return restaurantes;
 	}
 }
 

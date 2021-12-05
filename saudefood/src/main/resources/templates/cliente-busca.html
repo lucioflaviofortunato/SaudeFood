@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
+            <a href="">
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+        </a>
+        </div>
+        
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span>
+            <br>
+            
+        </div>
+    </header>
+    <br/><br/>       
+    <!--cabecalho fim-->
+
+    
+    <div>
+		 <form id="form" method="get" th:object="${searchFilter}" th:action="@{/cliente/search}">
+		 			<input id="searchType" type="hidden" th:field="*{searchType}"/>
+		 	    	<input id="categoriaId" type="hidden" th:field="*{categoriaId}"/>
+	    <div>
+	        <h1>É Hora de Rangar !</h1>
+	        
+	            <fieldset>
+	            	
+	                <label for="busca">Buscar :</label><br/>
+	                <input type="text" th:field="*{texto}" placeholder="Buscar..."/>
+	                <input type="button" value="Procurar" onclick="searchRest(null);"/>
+	            </fieldset>
+	
+	      
+	    </div>
+	
+	    <div id="divCategoriasComidaGeral">
+	        <div id="divCategoriaComidasOpcao" th:each="categoria : ${categorias}">
+	            <a href="#" th:onclick="'searchRest(' + ${categoria.id} + ');'">
+	                <img th:src="@{/images/categoria/} + ${categoria.imagem} " id="imgCategoriaComida"><br/>
+	                <span th:text="${categoria.nome}"></span>
+	            </a>
+	        </div>
+	                
+	    </div>
+	
+	   
+        <h1>Resultados</h1>
+        <fieldset>
+            <legend>Filtros</legend>
+            <input type="button" value="Entrega Gratis" th:id="*{entregaGratis} ? 'inputSelecionado' : '' " onclick="setCmd('EntregaGratis')" />
+            <br/>           
+            <input type="button" value="Maior taxa" th:id="*{order.name()} == 'Taxa' and !*{asc} ? 'inputSelecionado' : '' " onclick="setCmd('MaiorTaxa') "/>  
+            <input type="button" value="Menor Taxa" th:id="*{order.name()} == 'Taxa' and *{asc} ? 'inputSelecionado' : ''" onclick="setCmd('MenorTaxa') "/>
+            <br/>
+            <input type="button" value="Maior Tempo" th:id="*{order.name()} == 'Tempo' and !*{asc} ? 'inputSelecionado' : ''" onclick="setCmd('MaiorTempo') "/>
+            <input type="button" value="Menor Tempo" th:id="*{order.name()} == 'Tempo' and *{asc} ? 'inputSelecionado' : ''" onclick="setCmd('MenorTempo') "/>
+             <br/>
+             
+             <input type="hidden" id="entregaGratis" th:field="*{entregaGratis}"/>
+             <input type="hidden" id="order" th:field="*{order}"/>
+             <input type="hidden" id="asc" th:field="*{asc}"/>
+             <input type="hidden" id="cmd" name="cmd"/>
+            
+        </fieldset>
+         </form>
+	</div>
+
+    <div>
+
+        <div id="divRestauranteOpcao" th:each="restaurante : ${restaurantes}">
+            <a href="clienteRestaurante.html">
+                <img th:src="@{/images/logotipo/} + ${restaurante.logotipo}"  id="imgRestauranteOpcao"/>
+	                <br/>
+	                <span id="spanNomeRestauranteOpcao" th:text=${restaurante.nome}></span>
+	                <br/>
+	                <span th:text="${restaurante.CategoriaAsText}"></span>
+	                <br/>
+	                <span th:text="'Tempo medio de entrega :' + ${restaurante.tempoEntregaBase} + 'min'"></span>
+	                <br>
+	                <span th:text="'Taxa de entrega R' + ${#numbers.formatCurrency(restaurante.taxaEntrega)}" > </span>
+            </a>
+            <br/><br/>
+        </div>
+        
+    </div>
+    <div th:if="${restaurantes.size() == 0}">
+    <span>Nenhum Restaurante encontrado</span><br/>
+    </div>
+    <br/>
+    <input type="button" value="Voltar"  th:onclick="'location.href=\'' + @{/cliente/home} + '\';'"/><br/>
+
+    <!--Róda pé inicio-->
+    
+</body>
+
+</html>

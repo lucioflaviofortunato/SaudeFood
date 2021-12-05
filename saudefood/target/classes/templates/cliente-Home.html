@@ -25,31 +25,36 @@
     </header>
     <br/><br/>       
     <!--cabecalho fim-->
-
-    <div>
-        <h1>É Hora de Rangar !</h1>
-        <form method="POST" action="">
-            <fieldset>
-                <label for="busca">Buscar :</label><br/>
-                <input type="text" name="busca" id="busca" placeholder="Buscar..."/>
-                <input type="button" value="Procurar" onclick=" location.href = 'clienteBusca.html';"/>
-            </fieldset>
-
-        </form>
-    </div>
-
-    <div id="divCategoriasComidaGeral">
-        <div id="divCategoriaComidasOpcao" th:each="categoria : ${categorias}">
-            <a href="#">
-                <img th:src="@{/images/categoria/} + ${categoria.imagem} " id="imgCategoriaComida"><br/>
-                <span th:text="${categoria.nome}"></span>
-            </a>
-        </div>
-                
-    </div>
-
-   
-
+     
+     <div>
+		 <form id="form" method="get" th:object="${searchFilter}" th:action="@{/cliente/search}">
+		 			<input id="searchType" type="hidden" th:field="*{searchType}"/>
+		 	    	<input id="categoriaId" type="hidden" th:field="*{categoriaId}"/>
+	    <div>
+	        <h1>É Hora de Rangar !</h1>
+	        
+	            <fieldset>
+	            	
+	                <label for="busca">Buscar :</label><br/>
+	                <input type="text" th:field="*{texto}" placeholder="Buscar..."/>
+	                <input type="button" value="Procurar" onclick="searchRest(null);"/>
+	            </fieldset>
+	
+	      
+	    </div>
+	
+	    <div id="divCategoriasComidaGeral">
+	        <div id="divCategoriaComidasOpcao" th:each="categoria : ${categorias}">
+	            <a href="#" th:onclick="'searchRest(' + ${categoria.id} + ');'">
+	                <img th:src="@{/images/categoria/} + ${categoria.imagem} " id="imgCategoriaComida"><br/>
+	                <span th:text="${categoria.nome}"></span>
+	            </a>
+	        </div>
+	                
+	    </div>
+	
+	    </form>
+	</div>
     <div>
         <h1>Ultimos Pedidos</h1>
         <input type="button" value="#45886 McBlunalds"/><br/>
