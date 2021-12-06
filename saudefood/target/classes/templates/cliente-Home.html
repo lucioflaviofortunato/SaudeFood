@@ -11,19 +11,24 @@
 <body>
     <header>
         <div id="divLogotipoSistema">
-            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
-            <a href="">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>        
+           
             <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
-        </a>
+       
         </div>
         
         <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
-            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span>
-            <br>
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span><br/>
+             
+            <div th:if="${session.carrinho != null}" style="display : inline;">
+            
+            <a th:href="@{/cliente/carrinho/visualizar}"> <img th:src="@{/imagens/bf_iconeCarrinho.png}" id="imgIconeCarrinho"> </a>
+            
+            </div>       
             
         </div>
     </header>
-    <br/><br/>       
+    <br/><br/>   
     <!--cabecalho fim-->
      
      <div>
