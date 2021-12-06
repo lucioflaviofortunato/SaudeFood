@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
+            <a href="">
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+        </a>
+        </div>
+        
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span>
+            <br>
+            
+        </div>
+    </header>
+    <br/><br/>       
+    <!--cabecalho fim-->
+    <div>
+        <img th:src="@{/images/logotipo/} + ${restaurante.logotipo}" id="imgRestauranteBusca"/>
+        <br/>
+        <span id="restauranteOpcaoTitulo" th:text="${restaurante.nome}"></span>
+        <br/>
+        <span id="restauranteOpcaoCategoria" th:text="${restaurante.categoriaAsText}"></span>
+        <br/>
+        <span id="restauranteOpcaoTempo" th:text="'Tempo médio de entrega: ' + ${restaurante.calcularTempoEntrega(cep)} + 'm' "></span>
+        <br>
+        <span id="restauranteOpcaoTaxa" th:text="'Taxa de entrega: ' + ${#numbers.formatCurrency(restaurante.taxaEntrega)}"></span>
+    </div>
+
+    <div>
+        <h1>Opçoes</h1>
+        
+        <form  id="filterForm"   action="get" th:action="@{/cliente/restaurante}">
+        <input type="hidden" id="categoria" name="categoria"/>
+        <input type="hidden" name="restauranteId" th:value="${restaurante.id}">
+        <fieldset id="fieldsetFiltros">
+            <legend>Filtros</legend>
+            <div style="display: inline;" th:each="categoria : ${categorias}">
+            <input
+             th:id="${categoria == categoriaSelecionada} ? 'inputSelecionado' : ''"              
+             type="submit"
+             th:value="${categoria}"
+             th:data-categoria="${categoria}"
+             onclick="filterCardapio(this.getAttribute('data-categoria'));"/>	            
+           </div>
+        </fieldset>
+        </form>
+        <br/>
+    </div>
+
+    <div>
+        <h1>Destaques</h1>
+    </div>
+
+    <div>
+
+        <div id="divRestauranteOpçao" th:each="item : ${itensCardapioDestaque}" style="margin-top: 20px" >
+            <img id="imgComida" th:src="@{/images/comida/} + ${item.imagem}"/>
+            <br/>
+            <span id="restauranteOpcaoTitulo" th:text="${item.nome}" ></span>
+            <br/>
+            <span th:texte="${item.descricao}"></span>            
+            <span th:text="${#numbers.formatCurrency(item.preco)}"></span>
+            <br/>
+            <form method="get"  th:action="@{/cliente/carrinho/adicionar}">
+            <input type="hidden" name="itemId" th:value="${item.id}" />
+                <label for="quantidade">Quantidade</label>
+                <select name = "quantidade" id="quantidade" >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select><br/><br/>
+                Observaçoes:
+                <br/>
+                <textarea name="observaçoes"></textarea>
+                    <br><br>
+                    <input type="submit" value="Adicionar ao carrinho" />
+
+            </form>
+        </div>       
+    </div>
+    <span th:if="${itensCardapioDestaque.size() == 0}">Não existem itens em destaque</span>
+    <br/>
+    <br/>
+    
+        <div>
+        <h1>Menu</h1>
+    </div>
+
+    <div>
+
+        <div id="divRestauranteOpçao" th:each="item : ${itensCardapioNaoDestaque}" style="margin-top: 20px">
+            <img id="imgComida" th:src="@{/images/comida/} + ${item.imagem}"/>
+            <br/>
+            <span id="restauranteOpcaoTitulo" th:text="${item.nome}" ></span>
+            <br/>
+            <span th:texte="${item.descricao}"></span>
+            <br/>
+            <span th:text="${#numbers.formatCurrency(item.preco)}"></span>           
+         <form method="get"  th:action="@{/cliente/carrinho/adicionar}">
+            <input type="hidden" name="itemId" th:value="${item.id}" />
+                <label for="quantidade">Quantidade</label>
+                <select name = "quantidade" id="quantidade" >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select><br/><br/>
+                Observaçoes:
+                <br/>
+                <textarea name="observaçoes"></textarea>
+                    <br><br>
+                    <input type="submit" value="Adicionar ao carrinho" />
+
+            </form>
+        </div>       
+    </div>
+  
+    <input type="button" value="Voltar" th:onclick="'location.href =\' ' + @{/cliente/home} + '\';'">
+  
+  
+  <!--Róda pé inicio-->
+    
+</body>
+
+</html>

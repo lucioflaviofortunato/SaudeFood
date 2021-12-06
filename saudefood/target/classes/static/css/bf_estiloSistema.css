@@ -222,9 +222,18 @@ input#inputSelecionado
     border-color: #1e9bde;
 }
 
+img#imgComida{
+	 height: 130px;
+}
+
+
 
 img#imgCategoriaComida{
 	height: 50px
+}
+
+img#imgRestauranteBusca{
+	 height: 130px;
 }
 
 
@@ -237,6 +246,11 @@ span#spanNomeRestauranteOpcao{
     font-weight: bold;
     text-transform: uppercase;
 }
+
+span#restauranteOpcaoTitulo{
+	font-weight: bold
+}
+
 
 div#divRestauranteOpcao
 {

@@ -21,7 +21,10 @@ import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.cliente.ClienteRepository;
 import br.com.saudefood.domain.restaurante.CategoriaRestaurante;
 import br.com.saudefood.domain.restaurante.CategoriaRestauranteRepository;
+import br.com.saudefood.domain.restaurante.ItemCardapio;
+import br.com.saudefood.domain.restaurante.ItemCardapioRepository;
 import br.com.saudefood.domain.restaurante.Restaurante;
+import br.com.saudefood.domain.restaurante.RestauranteRepository;
 import br.com.saudefood.domain.restaurante.SearchFilter;
 import br.com.saudefood.util.SecurityUtils;
 
@@ -40,6 +43,12 @@ public class ClienteController {
 	
 	@Autowired
 	private RestauranteService restauranteService;
+	
+	@Autowired
+	private RestauranteRepository restauranteRepository;
+	
+	@Autowired
+	private ItemCardapioRepository itemCardapioRepository;
 	
 	@GetMapping(path = "/home")
 	public String home(Model model) {
@@ -98,9 +107,42 @@ public class ClienteController {
 		controllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);	
 		
 		model.addAttribute("searchFilter", filter);
-		
+		model.addAttribute("cep", SecurityUtils.loggedCliente().getCep());
 			return "cliente-busca";
 		}
+	
+	@GetMapping(path = "/restaurante")
+	public String viewRestaurante(
+			@RequestParam("restauranteId") Integer restaurantId,
+			@RequestParam(value = "categoria", required = false) String categoria,
+			Model model) {
+		
+		
+		Restaurante restaurante = restauranteRepository.findById(restaurantId).orElseThrow();
+		model.addAttribute("restaurante", restaurante);		
+		model.addAttribute("cep", SecurityUtils.loggedCliente().getCep());
+		
+		List<String> categorias = itemCardapioRepository.findCategorias(restaurantId);
+		model.addAttribute("categorias", categorias);
+		
+		List<ItemCardapio> itensCardapioDestaque;
+		List<ItemCardapio> itensCardapioNaoDestaque;
+		
+		
+		if(categoria == null) {
+			itensCardapioDestaque = itemCardapioRepository.findByRestaurante_IdAndDestaqueOrderByNome(restaurantId, true);		
+			itensCardapioNaoDestaque = itemCardapioRepository.findByRestaurante_IdAndDestaqueOrderByNome(restaurantId, false);				
+			}else {
+			itensCardapioDestaque = itemCardapioRepository.findByRestaurante_IdAndDestaqueAndCategoriaOrderByNome(restaurantId, true,categoria);		
+			itensCardapioNaoDestaque = itemCardapioRepository.findByRestaurante_IdAndDestaqueAndCategoriaOrderByNome(restaurantId, false,categoria);				
+			}
+		model.addAttribute("itensCardapioDestaque", itensCardapioDestaque);
+		model.addAttribute("itensCardapioNaoDestaque", itensCardapioNaoDestaque);
+		model.addAttribute("categoriaSelecionada", categoria);
+		
+		return "cliente-restaurante";
+	}
+	
 	}
 	
 

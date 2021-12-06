@@ -28,3 +28,8 @@ function setCmd(cmd){
 
 }
 
+function filterCardapio(categoria){
+	document.getElementById("categoria").value = categoria;
+	document.getElementById(filterForm).submit();
+}
+
