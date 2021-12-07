@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.saudefood.ImageService;
 import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.cliente.ClienteRepository;
 import br.com.saudefood.domain.restaurante.Restaurante;

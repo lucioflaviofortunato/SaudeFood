@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.saudefood.ImageService;
+import br.com.saudefood.application.service.ImageService;
 
 @Controller
 public class ImageController {
