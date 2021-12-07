@@ -37,7 +37,7 @@ public class Carrinho implements Serializable{
 		}
 	}
 	
-	public void adionarItem(ItemPedido itemPedido) {
+	public void adicionarItem(ItemPedido itemPedido) {
 		try {
 			adicionarItem(itemPedido.getItemCardapio(),itemPedido.getQuantidade(),itemPedido.getObservacoes());
 		} catch (RestauranteDiferenteException e) {

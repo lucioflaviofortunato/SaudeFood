@@ -1,67 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
- <title>BlueFood</title> 
- <link rel="stylesheet" type="text/css" href="css/bf_estiloSistema.css">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
 </head>
 <body>
     <header>
         <div id="divLogotipoSistema">
-            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
-            <a href="">
-            <img src="imagens/logo.PNG" id="imgLogotipoSitema" >
-        </a>
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>        
+           
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+       
         </div>
         
-        <div id="divUsuarioLogado">
-            Ola nome do usuario
-            <br>
-            <img src="imagens/icone_carrinho.PNG" id="imgIconeCarrinho">
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span><br/>
+             
+            <div th:if="${session.carrinho != null}" style="display : inline;">
+            
+            <a th:href="@{/cliente/carrinho/visualizar}"> <img th:src="@{/imagens/bf_iconeCarrinho.png}" id="imgIconeCarrinho"> </a>
+            
+            </div>       
+            
         </div>
     </header>
-    <br/><br/>       
+    <br/><br/>        
     <!--cabecalho fim-->
     <div>
         <h1>SEU PEDIDO</h1>
-       <input type="button" value="Refazer Pedido" onclick="location.href = 'clienteCarrinho.html';"/>
+       <input type="button" value="Refazer Pedido" th:onclick="'location.href =\' '+ @{/cliente/carrinho/refazerCarrinho} + '?pedidoId=' + ${pedido.id} + '\';'"/>
     </div>
     <br/><br/>
+    
+    <div id="divMensagemDeErro">
+   		<span th:text="'STATUS: ' + ${pedido.status.descricao}"></span>
+    </div>
+		<div id="divRestauranteOpcao">
+		<img th:src="@{/images/logotipo/} + ${pedido.restaurante.logotipo}"  id="imgRestauranteOpcao"/>
+		</div>
 
-
-    <div>
-        <span>Pizza Calabresa</span><br/>
-        <span>Qtd : 1</span><br/>
-        <span>Exemplo de observacao quando ouver</span><br/>
-        <span>R$ 45,00</span><br/><br/>
-        <input type="button" value="Remover">
+    <div th:each="item : ${pedido.itens}">
+        <span th:text="${item.itemCardapio.nome}"></span><br/>
+        <span th:text="'Qtd: ' + ${item.quantidade}"></span><br/>
+        <span th:text="${item.observacoes}"></span><br/>
+        <span th:text="${#numbers.formatCurrency(item.preco)}"></span><br/><br/>
+       
         <br/><br/>
     </div>
 
-    <div>
-        <span>Hamburguer</span><br/>
-        <span>Qtd : 1</span><br/>
-        <span>Exemplo de observacao quando ouver</span><br/>
-        <span>R$ 25,00</span><br/><br/>
-        <input type="button" value="Remover">
-        <br/><br/>
-    </div>
+    
 
     <div>
         <span>Taxa de Entrega</span><br/>
-        <span>R$ 10,00</span>
+        <span th:text="${#numbers.formatCurrency(pedido.taxaEntrega)}"></span>
     </div>
     <br/><br/>
 
     <div>
         <span>Total</span>
-        <span>R$ 120,00</span>
+        <span th:text="${#numbers.formatCurrency(pedido.total)}"></span>
     </div>
     <br/><br/>
 
 
     <div>
-        <input type="button" value="Voltar" onclick="location.href = 'clienteHome.html';"/>
+        <input type="button" value="Voltar" th:onclick="'location.href=\' ' + @{/cliente/home} + '\';'"/>
     </div>
 
 

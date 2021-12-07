@@ -19,6 +19,8 @@ import br.com.saudefood.application.service.ClienteService;
 import br.com.saudefood.application.service.RestauranteService;
 import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.cliente.ClienteRepository;
+import br.com.saudefood.domain.pedido.Pedido;
+import br.com.saudefood.domain.pedido.PedidoRepository;
 import br.com.saudefood.domain.restaurante.CategoriaRestaurante;
 import br.com.saudefood.domain.restaurante.CategoriaRestauranteRepository;
 import br.com.saudefood.domain.restaurante.ItemCardapio;
@@ -50,11 +52,18 @@ public class ClienteController {
 	@Autowired
 	private ItemCardapioRepository itemCardapioRepository;
 	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
 	@GetMapping(path = "/home")
 	public String home(Model model) {
 		List<CategoriaRestaurante> categorias = categoriaRestauranteRepository.findAll(Sort.by("nome"));
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("searchFilter", new SearchFilter());		
+		
+		List<Pedido> pedidos = pedidoRepository.listPedidosByCliente(SecurityUtils.loggedCliente().getId());
+		model.addAttribute("pedidos", pedidos);
+		
 		return "cliente-home";
 	}
 	
