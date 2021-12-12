@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -55,11 +56,22 @@ public class Pedido implements Serializable{
 		public boolean isUltimo() {
 			return ultimo;
 		}
+		
+		public static Status fromOrdem(int ordem) {
+			for(Status status : Status.values()) {
+				if(status.getOrdem() == ordem) {
+					return status;
+				}
+			}
+			return null;
+		}
+		
+		
 	}
-	
-	@javax.persistence.Id
+	@EqualsAndHashCode.Include
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	
 	@NotNull
 	private LocalDateTime data;
@@ -89,7 +101,17 @@ public class Pedido implements Serializable{
 	private Set<ItemPedido> itens;
 	
 	public String getFormattedId() {
-		return String.format("#%04d", Id); 
+		return String.format("#%04d", id); 
+	}
+	
+	public void definirProximoStatus() {
+		int ordem = status.getOrdem();
+	Status newStatus =	Status.fromOrdem(ordem + 1);
+	
+		if(newStatus != null) {
+			this.status = newStatus;
+		}
+	
 	}
 
 }

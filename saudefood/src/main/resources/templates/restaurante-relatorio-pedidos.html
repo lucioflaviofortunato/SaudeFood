@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>        
+           
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+       
+        </div>
+        
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span><br/>
+            
+            
+        </div>
+    </header>
+    <br/><br/>       
+   
+
+    <div>
+        <h1>Relatorios de Pedidos</h1>
+        <form method="get" th:object="${filter}" th:action="@{/restaurante/relatorio/pedidos}">
+	        <fieldset id="fieldsetFiltros">
+	            <legend>Filtros</legend>
+	            <label for="numero">Numero</label><br/>
+	            <input type="text"  id="numero" th:field="*{pedidoId}"><br/>
+	            <label for="inicio">Inicio</label><br/>
+	            <input type="date"  id="inicio" th:field="*{dataInicial}"><br/>
+	            <label for="fim">Fim</label><br/>
+	            <input type="date"  id="fim" th:field="*{dataFinal}"><br/>
+	            <input type="submit" value="Buscar">
+	        </fieldset>
+        </form>
+    </div>
+    <br/><br/>
+     
+    <fieldset>
+    
+    <div th:if="${pedidos.size() > 0}">
+    <table>
+        <tr>
+            <th>Pedido</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Valor</th>
+        </tr>
+
+        <tr th:each="pedido : ${pedidos}">
+            <td><input type="submit" th:value="${pedido.formattedId}" 
+            th:onclick="'location.href=\'' + @{/restaurante/pedido} + '?pedidoId=' + ${pedido.id} + '\';'"/></td>
+            <td><span th:text="${pedido.cliente.nome}"></span></td>
+            <td><span th:text="${pedido.cliente.formattedCep}"></span></td>
+            <td><span th:text="${#numbers.formatCurrency(pedido.total)}"></span> </td>
+        </tr>
+
+        
+
+    </table>
+    </div>
+    <span th:if="${pedidos.size == 0}"> Nenhum pedido encontrado</span>
+    
+</fieldset>
+     <br/><br/>
+
+     <input type="button" value="Voltar" th:onclick="'location.href=\' ' + @{/restaurante/home} + '\';'"/>
+
+     <!--Róda pé inicio-->
+    
+</body>
+
+</html>

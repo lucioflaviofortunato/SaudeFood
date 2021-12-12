@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>        
+           
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+       
+        </div>
+        
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span><br/>
+            
+            
+        </div>
+    </header>
+    <br/><br/>    
+   
+
+    <div>
+        <h1>Configurações</h1><br/>
+
+        <input type="button" value="Dados Basicos" th:onclick="'location.href=\'' + @{/restaurante/edit} + '\';'"/><br/>
+        <input type="button" value="Comidas" th:onclick="'location.href=\'' + @{/restaurante/comidas} + '\';'"/><br/>
+       
+        <input type="button" value="Relatorios de Pedidos" th:onclick="'location.href=\'' + @{/restaurante/relatorio/pedidos} + '\';'"/><br/>
+        <input type="button" value="Relatorios de Itens" th:onclick="'location.href=\'' + @{/restaurante/relatorio/itens} + '\';'"/><br/>
+     
+        <br/><br/>
+
+    </div>
+
+    <div>
+        <H1>Pedidos em Andamento</H1><br>
+        <div th:each="pedido : ${pedidos}">
+        <input type="button" th:value="${pedido.formattedId}" th:onclick="'location.href=\'' + @{/restaurante/pedido} + '?pedidoId=' + ${pedido.id} + '\';'"/><br/>
+        
+       </div>
+    </div>
+    <br/>
+
+      
+		<input type="button" value="Sair" th:onclick="'location.href=\'' + @{/logout} + '\';'"/><br/>
+
+       <!--Róda pé inicio-->
+    
+</body>
+
+</html>

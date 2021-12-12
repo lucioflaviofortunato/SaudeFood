@@ -27,4 +27,8 @@ public class Cliente extends Usuario {
 	private String cep;
 	
 	
+	public String  getFormattedCep() {
+		return cep.substring(0, 5) + "-" + cep.substring(5);
+	}
+	
 }

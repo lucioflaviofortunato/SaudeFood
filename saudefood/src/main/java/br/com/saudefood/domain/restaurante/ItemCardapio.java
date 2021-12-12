@@ -74,7 +74,7 @@ public class ItemCardapio implements Serializable{
 			throw new IllegalStateException("O objeto precisa primeiro ser criado");
 		}
 		
-		this.imagem = String.format("%04d-comida.%",getId(),FileType.of(imagemFile.getContentType()).getExtension());
+		this.imagem = String.format("%04d-comida.%s",getId(),FileType.of(imagemFile.getContentType()).getExtension());
 	}
 
 }

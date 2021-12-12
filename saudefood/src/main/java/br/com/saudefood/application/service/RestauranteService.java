@@ -3,14 +3,14 @@ package br.com.saudefood.application.service;
 import java.util.Iterator;
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.saudefood.domain.cliente.Cliente;
 import br.com.saudefood.domain.cliente.ClienteRepository;
+import br.com.saudefood.domain.restaurante.ItemCardapio;
+import br.com.saudefood.domain.restaurante.ItemCardapioRepository;
 import br.com.saudefood.domain.restaurante.Restaurante;
 import br.com.saudefood.domain.restaurante.RestauranteComparator;
 import br.com.saudefood.domain.restaurante.RestauranteRepository;
@@ -30,6 +30,9 @@ public class RestauranteService {
 	@Autowired
 	private ImageService imageService;
 	
+	@Autowired
+	private ItemCardapioRepository itemCardapioRepository;
+	
 	@Transactional
 	public void saveRestaurante(Restaurante restaurante) throws ValidationException {
 		if (!validateEmail(restaurante.getEmail(), restaurante.getId())) {
@@ -38,6 +41,8 @@ public class RestauranteService {
 		if (restaurante.getId() != null) {
 			Restaurante restauranteDB = restauranteRepository.findById(restaurante.getId()).orElseThrow();
 			restaurante.setSenha(restauranteDB.getSenha());
+			restaurante.setLogotipo(restauranteDB.getLogotipo());
+			restauranteRepository.save(restaurante);
 		}else {
 			restaurante.encryptPassword();
 			restaurante = restauranteRepository.save(restaurante);
@@ -104,5 +109,14 @@ public class RestauranteService {
 		restaurantes.sort(comparator);
 		return restaurantes;
 	}
+	
+	@Transactional
+	public void saveItemCardapio(ItemCardapio itemCardapio) {
+		itemCardapio = itemCardapioRepository.save(itemCardapio);
+		itemCardapio.setImagemFileName();
+		imageService.uploadComida(itemCardapio.getImagemFile(), itemCardapio.getImagem());
+		
+	}
+	
 }
 

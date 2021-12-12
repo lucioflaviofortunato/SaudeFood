@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+ <title>SaudeFood</title> 
+ <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
+ <script type="text/javascript" th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <header>
+        <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>        
+           
+            <img th:src="@{/imagens/logo.PNG}" id="imgLogotipoSitema" >
+       
+        </div>
+        
+        <div id="divUsuarioLogado" th:if="${#authentication.principal != 'anonymousUser'}">
+            <span th:text="'Ola, ' + ${#authentication.principal.usuario.nome}"></span><br/>
+            
+            
+        </div>
+    </header>
+    <br/><br/>       
+   
+
+    <div>
+        <h1>Relatorio de Itens</h1><br>
+        <form  method="get" th:action="@{/restaurante/relatorio/itens}" th:object="${relatorioItemFilter}">
+	        <fieldset >
+	            <legend>Filtros</legend>
+	            <label for="numero">Item</label><br/>
+	            <select  id="numero" th:field="*{itemId}">
+	             <option value="0">Todos</option>
+	            
+	             <option th:each="item : ${itenscardapio}" th:value="${item.id}" th:text="${item.nome}">
+	             
+	            </select>
+	            <br/>
+	            
+	            <label for="inicio">Inicio</label> <br/>
+	            <input type="date"  id="inicio" th:field="*{dataInicial}"><br/>
+	           
+	            <label for="fim">Fim</label> <br/>	            
+	            <input type="date"  id="fim" th:field="*{dataFinal}"><br/>
+	            
+	            <input type="submit" value="Buscar">
+	        </fieldset>
+        </form>
+    </div>
+    <br/><br/>
+
+    <fieldset>
+    
+    <table th:if="${itensCalculados.size() > 0}">
+        <tr>
+            <th>Item</th>
+            <th>Quantidade</th>
+            <th>Faturamento</th>
+        </tr>
+
+        <tr th:each="item : ${itensCalculados}">
+            <td><span th:text="${item.nome}"></span> </td>
+            <td><span th:text="${item.quantidade}"></span></td>
+            <td><span th:text="${#numbers.formatCurrency(item.valor)}"></span></td>
+        </tr>        
+       
+    </table>
+    <span th:if="${itensCalculados.size() == 0}"> Nenhum Item encontrado </span>
+    
+</fieldset>
+    <br/><br/>   
+    <input type="button" value="Voltar" th:onclick="'location.href=\' ' + @{/restaurante/home} + '\';'"/>
+      <!--Róda pé inicio-->
+    
+</body>
+
+</html>
