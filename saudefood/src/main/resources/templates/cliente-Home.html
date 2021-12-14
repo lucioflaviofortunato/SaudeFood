@@ -7,6 +7,7 @@
  <title>SaudeFood</title> 
  <link rel="stylesheet" type="text/css" th:href="@{/css/bf_estiloSistema.css}">
  <script type="text/javascript" th:src="@{/js/script.js}"></script>
+ 
 </head>
 <body>
     <header>
@@ -66,10 +67,21 @@
         <div th:each="pedido : ${pedidos}">
         	
         	<input type="button" th:value="${pedido.formattedId} + ' ' + ${pedido.restaurante.nome}"
-        	th:onclick="'location.href=\'' + @{/cliente/pedido/view} + '?pedidoId=' + ${pedido.id} + '\';'"/><br/>
-        	<br/>
+        	th:onclick="'location.href=\'' + @{/cliente/pedido/view} + '?pedidoId=' + ${pedido.id} + '\';'"/><br/><br/>
+        	
+        	<div id="divMensagemDesucesso" th:if="${pedido.totalCaloria <= #authentication.principal.usuario.metaCalorias}">
+        	<span >Parabens voce ficou dentro da Meta Neste Pedido </span>
+        	</div>
+        	<div id="divMensagemDeErro" th:if="${pedido.totalCaloria > #authentication.principal.usuario.metaCalorias}">
+        	<span >Continue se esforçando para manter-se dentro da Meta </span>
+        	</div>
+        	<br/><br/>
         </div>
         <span th:if="${pedidos.size() == 0}"> Não existe nenhum Pedido Anterior !</span>
+        
+     
+      
+      
      
 
     <div>
@@ -82,5 +94,6 @@
      <!--Róda pé inicio-->
     
 </body>
+
 
 </html>

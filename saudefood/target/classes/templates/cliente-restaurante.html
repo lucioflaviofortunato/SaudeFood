@@ -74,11 +74,13 @@
             <br/>
             <span id="restauranteOpcaoTitulo" th:text="${item.nome}" ></span>
             <br/>
-            <span th:texte="${item.descricao}"></span>            
+            <span th:text="${item.descricao}"></span> <br/>
+            <span th:text="'Calorias : ' + ${item.calorias}"></span> <br/>          
             <span th:text="${#numbers.formatCurrency(item.preco)}"></span>
             <br/>
             <form method="get"  th:action="@{/cliente/carrinho/adicionar}">
             <input type="hidden" name="itemId" th:value="${item.id}" />
+            <input type="hidden" name="calorias" th:value="${item.calorias}" />
                 <label for="quantidade">Quantidade</label>
                 <select name = "quantidade" id="quantidade" >
                     <option>1</option>
@@ -88,8 +90,8 @@
                 </select><br/><br/>
                 Observaçoes:
                 <br/>
-                <textarea name="observacoes"></textarea>
-                    <br><br>
+                <textarea name="observacoes"></textarea><br><br>
+                
                     <input type="submit" value="Adicionar ao carrinho" />
 
             </form>
@@ -110,11 +112,12 @@
             <br/>
             <span id="restauranteOpcaoTitulo" th:text="${item.nome}" ></span>
             <br/>
-            <span th:texte="${item.descricao}"></span>
-            <br/>
+            <span th:text="${item.descricao}"></span><br/>
+            <span th:text="'Calorias : ' + ${item.calorias}"></span> <br/> 
             <span th:text="${#numbers.formatCurrency(item.preco)}"></span>           
          <form method="get"  th:action="@{/cliente/carrinho/adicionar}">
             <input type="hidden" name="itemId" th:value="${item.id}" />
+            <input type="hidden" name="calorias" th:value="${item.calorias}" />
                 <label for="quantidade">Quantidade</label>
                 <select name = "quantidade" id="quantidade" >
                     <option>1</option>

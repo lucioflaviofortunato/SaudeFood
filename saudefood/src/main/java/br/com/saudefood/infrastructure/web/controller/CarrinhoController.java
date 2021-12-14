@@ -1,5 +1,7 @@
 package br.com.saudefood.infrastructure.web.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,13 +46,14 @@ public class CarrinhoController {
 			@RequestParam("itemId") Integer itemId,
 			@RequestParam("quantidade") Integer quantidade,
 			@RequestParam("observacoes") String observacoes,
+			@RequestParam("calorias") BigDecimal calorias,
 			@ModelAttribute("carrinho") Carrinho carrinho,
 			Model model){
 				
 		ItemCardapio itemCardapio = itemCardapioRepository.findById(itemId).orElseThrow();
 		
 		try {
-			carrinho.adicionarItem(itemCardapio, quantidade, observacoes);
+			carrinho.adicionarItem(itemCardapio, quantidade, observacoes, calorias);
 		} catch (RestauranteDiferenteException e) {
 			model.addAttribute("msg", "Não é possivel pedir comidas de restaurantes diferentes no mesmo pedido!");
 		}

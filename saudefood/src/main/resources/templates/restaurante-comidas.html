@@ -33,6 +33,7 @@
           <span th:text="${item.nome}"></span><br/>
           <span th:text="${item.categoria}"></span><br/>
           <span th:text="${item.descricao}"></span><br/>
+           <span th:text="'Calorias : ' + ${item.calorias}"></span><br/>
           <span th:text="${#numbers.formatCurrency(item.preco)}"></span><br/>
           <input type="button" value="Remover" th:onclick="'location.href=\' ' + @{/restaurante/comidas/remover} + '?itemId=' + ${item.id} + '\';'"><br><br>
       </div>
@@ -60,6 +61,13 @@
                 <input type="text" id="descricao"  name="descricao"  th:field="*{descricao}" th:classappend="${#fields.hasErrors('descricao')} ? 'inputError' : ''" /><br />				
 				<div id="divMensagemDeErro" th:if="${#fields.hasErrors('descricao')}">
 					<span th:errors="*{descricao}"></span>
+				</div>
+				<br />
+				<br />
+                <label for="calorias">Calorias</label><br/>
+                <input type="text" id="calorias"  name="calorias"  th:field="*{calorias}" th:classappend="${#fields.hasErrors('calorias')} ? 'inputError' : ''" /><br />				
+				<div id="divMensagemDeErro" th:if="${#fields.hasErrors('calorias')}">
+					<span th:errors="*{calorias}"></span>
 				</div>
 				<br />
                 <label for="preco">Preço</label><br/>

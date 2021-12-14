@@ -17,7 +17,10 @@ public class Carrinho implements Serializable{
 	private List<ItemPedido> itens = new ArrayList<>();
 	private Restaurante restaurante;
 	
-	public void adicionarItem(ItemCardapio itemCardapio, Integer quantidade, String observacoes)  throws RestauranteDiferenteException{
+	
+	
+	
+	public void adicionarItem(ItemCardapio itemCardapio, Integer quantidade, String observacoes,BigDecimal calorias)  throws RestauranteDiferenteException{
 		
 		if(itens.size() ==0) {
 			restaurante = itemCardapio.getRestaurante();
@@ -32,14 +35,15 @@ public class Carrinho implements Serializable{
 			itemPedido.setItemCardapio(itemCardapio);
 			itemPedido.setQuantidade(quantidade);
 			itemPedido.setObservacoes(observacoes);
-			itemPedido.setPreco(itemCardapio.getPreco());
+			itemPedido.setCalorias(calorias);
+			itemPedido.setPreco(itemCardapio.getPreco());			
 			itens.add(itemPedido);
 		}
 	}
 	
 	public void adicionarItem(ItemPedido itemPedido) {
 		try {
-			adicionarItem(itemPedido.getItemCardapio(),itemPedido.getQuantidade(),itemPedido.getObservacoes());
+			adicionarItem(itemPedido.getItemCardapio(),itemPedido.getQuantidade(),itemPedido.getObservacoes(),itemPedido.getCalorias());
 		} catch (RestauranteDiferenteException e) {
 			
 		}
@@ -82,6 +86,20 @@ public class Carrinho implements Serializable{
 		return soma;
 		
 	}
+	
+	public BigDecimal getCaloriaTotal() {
+		BigDecimal soma = BigDecimal.ZERO;
+		
+		for(ItemPedido item : itens) {
+			soma = soma.add(item.getCaloriasCalculada());
+		}
+		
+		
+		return soma;
+		
+	}
+
+	
 	
 	public void limpar() {
 		itens.clear();

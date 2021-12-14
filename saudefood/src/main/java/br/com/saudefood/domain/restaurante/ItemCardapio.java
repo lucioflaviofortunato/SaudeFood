@@ -50,6 +50,9 @@ public class ItemCardapio implements Serializable{
 	@Size(max = 80)
 	private String descricao;
 	
+	@NotNull(message = "O campo calorias Não pode ser Vazio")
+	private BigDecimal calorias;
+	
 	@Size(max = 50)
 	private String imagem;
 	

@@ -47,6 +47,7 @@
     <div th:each="item : ${carrinho.itens}">
         <span th:text="${item.itemCardapio.nome}"></span><br/>
         <span th:text="'Qtd: ' + ${item.quantidade}"></span><br/>
+        <span th:text="'Calorias Un: ' + ${item.calorias}"></span><br/>
         <span th:text="${item.observacoes}"></span><br/>
         <span th:text="${#numbers.formatCurrency(item.preco)}"></span><br/><br/>
         <input type="button" value="Remover" th:onclick="'location.href=\'' + @{/cliente/carrinho/remover} + '?itemId=' + ${item.itemCardapio.id} + '\';'"/>
@@ -57,8 +58,17 @@
 	<span>O carrinho não possui itens</span>
 	 <br/><br/>
 	</div>
-    
+   
 	<div th:if="!${carrinho.vazio()}">
+	
+	
+	        <span id="msgSucesso" th:if="${carrinho.getCaloriaTotal() <= #authentication.principal.usuario.metaCalorias}">Calorias Totais do Pedido</span><br/><br/>
+	        <span id="msgFracasso" th:if="${carrinho.getCaloriaTotal() > #authentication.principal.usuario.metaCalorias}">Calorias Totais do Pedido <br/> </span><br/>
+	        <span th:text="${carrinho.getCaloriaTotal()}"> </span>
+	   
+	     
+	 <br/>
+     <br/>
 	    <div>
 	        <span>Taxa de Entrega</span><br/>
 	        <span th:text="${#numbers.formatCurrency(carrinho.restaurante.taxaEntrega)}"></span>
@@ -67,7 +77,7 @@
 	
 	    <div>
 	        <span>Total</span>
-	        <span th:text="${#numbers.formatCurrency(carrinho.getPrecoTotal(true))}"></span>
+	        <span  th:text="${#numbers.formatCurrency(carrinho.getPrecoTotal(true))}"></span>
 	    </div>
 	    <br/><br/>
 		

@@ -56,6 +56,7 @@ public class PedidoService {
 		pedido.setRestaurante(carrinho.getRestaurante());
 		pedido.setStatus(Status.Producao);
 		pedido.setTaxaEntrega(carrinho.getRestaurante().getTaxaEntrega());
+		pedido.setTotalCaloria(carrinho.getCaloriaTotal());
 		pedido.setSubTotal(carrinho.getPrecoTotal(false));
 		pedido.setTotal(carrinho.getPrecoTotal(true));
 		

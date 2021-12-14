@@ -82,6 +82,14 @@
                  	<div id= "divMensagemDeErro" th:if="${#fields.hasErrors('cep')}">
                        <span th:errors="*{cep}"></span>
                     </div>
+                    
+                    <label for="metaCalorias">Meta de Calorias por Pedido :</label><br/>
+                 <input type="text" id = "metaCalorias" name = "metaCalorias" placeholder="Meta..." th:field="*{metaCalorias}"
+                 th:classappend="${#fields.hasErrors('metaCalorias')} ? 'inputError' : ''" onkeydown="return isNumberKey(event)"/>
+                 <br/><br/>
+                 	<div id= "divMensagemDeErro" th:if="${#fields.hasErrors('metaCalorias')}">
+                       <span th:errors="*{metaCalorias}"></span>
+                    </div>
 				
 				
 				<div th:if="${!editMode}">

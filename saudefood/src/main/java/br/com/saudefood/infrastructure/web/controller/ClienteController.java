@@ -64,6 +64,8 @@ public class ClienteController {
 		List<Pedido> pedidos = pedidoRepository.listPedidosByCliente(SecurityUtils.loggedCliente().getId());
 		model.addAttribute("pedidos", pedidos);
 		
+		
+		
 		return "cliente-home";
 	}
 	

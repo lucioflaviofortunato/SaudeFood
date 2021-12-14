@@ -95,6 +95,9 @@ public class Pedido implements Serializable{
 	private BigDecimal taxaEntrega;
 	
 	@NotNull
+	private BigDecimal totalCaloria;
+	
+	@NotNull
 	private BigDecimal total;
 	
 	@OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER)

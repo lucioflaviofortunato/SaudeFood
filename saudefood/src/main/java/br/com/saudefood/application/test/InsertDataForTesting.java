@@ -54,6 +54,7 @@ public class InsertDataForTesting {
 		p.setRestaurante(restaurantes[0]);
 		p.setStatus(Status.Producao);
 		p.setSubTotal(BigDecimal.valueOf(10));
+		p.setTotalCaloria(BigDecimal.valueOf(400));
 		p.setTaxaEntrega(BigDecimal.valueOf(2));
 		p.setTotal(BigDecimal.valueOf(12));
 		
@@ -151,6 +152,7 @@ public class InsertDataForTesting {
 		c.setEmail("joao@saudefood.com.br");
 		c.setSenha(StringUtils.encrypt("c"));
 		c.setCep("89300100");
+		c.setMetaCalorias(BigDecimal.valueOf(1000));
 		c.setCpf("03099887666");
 		c.setTelefone("99355430001");
 		clientes.add(c);
@@ -161,6 +163,7 @@ public class InsertDataForTesting {
 		c.setEmail("maria@saudefood.com.br");
 		c.setSenha(StringUtils.encrypt("c"));
 		c.setCep("89300101");
+		c.setMetaCalorias(BigDecimal.valueOf(1000));
 		c.setCpf("03099887667");
 		c.setTelefone("99355430002");
 		clientes.add(c);
@@ -176,6 +179,7 @@ public class InsertDataForTesting {
 		ItemCardapio ic = new ItemCardapio();
 		ic.setCategoria("Sanduiche");
 		ic.setDescricao("Delicioso sanduiche com molho");
+		ic.setCalorias(BigDecimal.valueOf(250));
 		ic.setNome("Double cheese Burguer Special");
 		ic.setPreco(BigDecimal.valueOf(23.8));
 		ic.setRestaurante(restaurantes[0]);
@@ -186,6 +190,7 @@ public class InsertDataForTesting {
 		 ic = new ItemCardapio();
 		ic.setCategoria("Sanduiche");
 		ic.setDescricao("Sanduiche padrão que mata a fome");
+		ic.setCalorias(BigDecimal.valueOf(200));
 		ic.setNome("Double cheese Burguer Simples");
 		ic.setPreco(BigDecimal.valueOf(17.8));
 		ic.setRestaurante(restaurantes[0]);
@@ -196,6 +201,7 @@ public class InsertDataForTesting {
 		ic = new ItemCardapio();
 		ic.setCategoria("Sanduiche");
 		ic.setDescricao("Sanduiche de peru");
+		ic.setCalorias(BigDecimal.valueOf(220));
 		ic.setNome("Sanduiche natural da casa");
 		ic.setPreco(BigDecimal.valueOf(11.8));
 		ic.setRestaurante(restaurantes[0]);
@@ -206,6 +212,7 @@ public class InsertDataForTesting {
 		ic = new ItemCardapio();
 		ic.setCategoria("Bebida");
 		ic.setDescricao("Refrigerante com gas");
+		ic.setCalorias(BigDecimal.valueOf(137));
 		ic.setNome("Refrigerante Tradicional");
 		ic.setPreco(BigDecimal.valueOf(9));
 		ic.setRestaurante(restaurantes[0]);
@@ -216,6 +223,7 @@ public class InsertDataForTesting {
 		ic = new ItemCardapio();
 		ic.setCategoria("Bebida");
 		ic.setDescricao("Suco natural");
+		ic.setCalorias(BigDecimal.valueOf(75));
 		ic.setNome("Suco de Laranja");
 		ic.setPreco(BigDecimal.valueOf(9));
 		ic.setRestaurante(restaurantes[0]);
@@ -226,6 +234,7 @@ public class InsertDataForTesting {
 		ic = new ItemCardapio();
 		ic.setCategoria("Pizza");
 		ic.setDescricao("Pizza saborosa com cebola");
+		ic.setCalorias(BigDecimal.valueOf(200));
 		ic.setNome("Pizza de calabresa");
 		ic.setPreco(BigDecimal.valueOf(38.9));
 		ic.setRestaurante(restaurantes[4]);
@@ -236,6 +245,7 @@ public class InsertDataForTesting {
 		ic = new ItemCardapio();
 		ic.setCategoria("Japonesa");
 		ic.setDescricao("Delicioso Uramaki tradicional");
+		ic.setCalorias(BigDecimal.valueOf(180));
 		ic.setNome("Uramaki");
 		ic.setPreco(BigDecimal.valueOf(16.80));
 		ic.setRestaurante(restaurantes[4]);

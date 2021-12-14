@@ -1,8 +1,11 @@
 package br.com.saudefood.domain.cliente;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import br.com.saudefood.domain.usuario.Usuario;
@@ -25,6 +28,10 @@ public class Cliente extends Usuario {
 	@Pattern(regexp = "[0-9]{8}", message = "O CEP possui formato inválido")
 	@Column(length = 8)
 	private String cep;
+	
+	@NotNull(message = "Defina uma meta de calorias por Pedidos")
+	private BigDecimal metaCalorias;
+	
 	
 	
 	public String  getFormattedCep() {

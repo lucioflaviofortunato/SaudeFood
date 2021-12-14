@@ -38,10 +38,18 @@ public class ItemPedido implements Serializable {
 	private String observacoes;
 	
 	@NotNull
+	private BigDecimal calorias;
+	
+		
+	@NotNull
 	private BigDecimal preco;
 	
 	public BigDecimal getPrecoCalculado() {
 		return preco.multiply(BigDecimal.valueOf(quantidade));
+	}
+	
+	public BigDecimal getCaloriasCalculada() {
+		return calorias.multiply(BigDecimal.valueOf(quantidade));
 	}
 	
 }
