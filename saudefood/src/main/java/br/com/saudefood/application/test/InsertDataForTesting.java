@@ -237,6 +237,310 @@ public class InsertDataForTesting {
 		ic.setCalorias(BigDecimal.valueOf(200));
 		ic.setNome("Pizza de calabresa");
 		ic.setPreco(BigDecimal.valueOf(38.9));
+		ic.setRestaurante(restaurantes[0]);
+		ic.setDestaque(false);
+		ic.setImagem("0002-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Japonesa");
+		ic.setDescricao("Delicioso Uramaki tradicional");
+		ic.setCalorias(BigDecimal.valueOf(180));
+		ic.setNome("Uramaki");
+		ic.setPreco(BigDecimal.valueOf(16.80));
+		ic.setRestaurante(restaurantes[0]);
+		ic.setDestaque(false);
+		ic.setImagem("0003-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Delicioso sanduiche com molho");
+		ic.setCalorias(BigDecimal.valueOf(250));
+		ic.setNome("Double cheese Burguer Special");
+		ic.setPreco(BigDecimal.valueOf(23.8));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(true);
+		ic.setImagem("0001-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		 ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche padrão que mata a fome");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Double cheese Burguer Simples");
+		ic.setPreco(BigDecimal.valueOf(17.8));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0006-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche de peru");
+		ic.setCalorias(BigDecimal.valueOf(220));
+		ic.setNome("Sanduiche natural da casa");
+		ic.setPreco(BigDecimal.valueOf(11.8));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0007-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Refrigerante com gas");
+		ic.setCalorias(BigDecimal.valueOf(137));
+		ic.setNome("Refrigerante Tradicional");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0004-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Suco natural");
+		ic.setCalorias(BigDecimal.valueOf(75));
+		ic.setNome("Suco de Laranja");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0005-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Pizza");
+		ic.setDescricao("Pizza saborosa com cebola");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Pizza de calabresa");
+		ic.setPreco(BigDecimal.valueOf(38.9));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0002-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Japonesa");
+		ic.setDescricao("Delicioso Uramaki tradicional");
+		ic.setCalorias(BigDecimal.valueOf(180));
+		ic.setNome("Uramaki");
+		ic.setPreco(BigDecimal.valueOf(16.80));
+		ic.setRestaurante(restaurantes[1]);
+		ic.setDestaque(false);
+		ic.setImagem("0003-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Delicioso sanduiche com molho");
+		ic.setCalorias(BigDecimal.valueOf(250));
+		ic.setNome("Double cheese Burguer Special");
+		ic.setPreco(BigDecimal.valueOf(23.8));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(true);
+		ic.setImagem("0001-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		 ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche padrão que mata a fome");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Double cheese Burguer Simples");
+		ic.setPreco(BigDecimal.valueOf(17.8));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0006-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche de peru");
+		ic.setCalorias(BigDecimal.valueOf(220));
+		ic.setNome("Sanduiche natural da casa");
+		ic.setPreco(BigDecimal.valueOf(11.8));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0007-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Refrigerante com gas");
+		ic.setCalorias(BigDecimal.valueOf(137));
+		ic.setNome("Refrigerante Tradicional");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0004-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Suco natural");
+		ic.setCalorias(BigDecimal.valueOf(75));
+		ic.setNome("Suco de Laranja");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0005-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Pizza");
+		ic.setDescricao("Pizza saborosa com cebola");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Pizza de calabresa");
+		ic.setPreco(BigDecimal.valueOf(38.9));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0002-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Japonesa");
+		ic.setDescricao("Delicioso Uramaki tradicional");
+		ic.setCalorias(BigDecimal.valueOf(180));
+		ic.setNome("Uramaki");
+		ic.setPreco(BigDecimal.valueOf(16.80));
+		ic.setRestaurante(restaurantes[2]);
+		ic.setDestaque(false);
+		ic.setImagem("0003-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Delicioso sanduiche com molho");
+		ic.setCalorias(BigDecimal.valueOf(250));
+		ic.setNome("Double cheese Burguer Special");
+		ic.setPreco(BigDecimal.valueOf(23.8));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(true);
+		ic.setImagem("0001-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		 ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche padrão que mata a fome");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Double cheese Burguer Simples");
+		ic.setPreco(BigDecimal.valueOf(17.8));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0006-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche de peru");
+		ic.setCalorias(BigDecimal.valueOf(220));
+		ic.setNome("Sanduiche natural da casa");
+		ic.setPreco(BigDecimal.valueOf(11.8));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0007-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Refrigerante com gas");
+		ic.setCalorias(BigDecimal.valueOf(137));
+		ic.setNome("Refrigerante Tradicional");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0004-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Suco natural");
+		ic.setCalorias(BigDecimal.valueOf(75));
+		ic.setNome("Suco de Laranja");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0005-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Pizza");
+		ic.setDescricao("Pizza saborosa com cebola");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Pizza de calabresa");
+		ic.setPreco(BigDecimal.valueOf(38.9));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0002-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Japonesa");
+		ic.setDescricao("Delicioso Uramaki tradicional");
+		ic.setCalorias(BigDecimal.valueOf(180));
+		ic.setNome("Uramaki");
+		ic.setPreco(BigDecimal.valueOf(16.80));
+		ic.setRestaurante(restaurantes[3]);
+		ic.setDestaque(false);
+		ic.setImagem("0003-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Delicioso sanduiche com molho");
+		ic.setCalorias(BigDecimal.valueOf(250));
+		ic.setNome("Double cheese Burguer Special");
+		ic.setPreco(BigDecimal.valueOf(23.8));
+		ic.setRestaurante(restaurantes[4]);
+		ic.setDestaque(true);
+		ic.setImagem("0001-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		 ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche padrão que mata a fome");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Double cheese Burguer Simples");
+		ic.setPreco(BigDecimal.valueOf(17.8));
+		ic.setRestaurante(restaurantes[4]);
+		ic.setDestaque(false);
+		ic.setImagem("0006-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Sanduiche");
+		ic.setDescricao("Sanduiche de peru");
+		ic.setCalorias(BigDecimal.valueOf(220));
+		ic.setNome("Sanduiche natural da casa");
+		ic.setPreco(BigDecimal.valueOf(11.8));
+		ic.setRestaurante(restaurantes[4]);
+		ic.setDestaque(false);
+		ic.setImagem("0007-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Refrigerante com gas");
+		ic.setCalorias(BigDecimal.valueOf(137));
+		ic.setNome("Refrigerante Tradicional");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[4]);
+		ic.setDestaque(false);
+		ic.setImagem("0004-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Bebida");
+		ic.setDescricao("Suco natural");
+		ic.setCalorias(BigDecimal.valueOf(75));
+		ic.setNome("Suco de Laranja");
+		ic.setPreco(BigDecimal.valueOf(9));
+		ic.setRestaurante(restaurantes[4]);
+		ic.setDestaque(false);
+		ic.setImagem("0005-comida.png");
+		itemCardapioRepository.save(ic);
+		
+		ic = new ItemCardapio();
+		ic.setCategoria("Pizza");
+		ic.setDescricao("Pizza saborosa com cebola");
+		ic.setCalorias(BigDecimal.valueOf(200));
+		ic.setNome("Pizza de calabresa");
+		ic.setPreco(BigDecimal.valueOf(38.9));
 		ic.setRestaurante(restaurantes[4]);
 		ic.setDestaque(false);
 		ic.setImagem("0002-comida.png");
@@ -252,7 +556,6 @@ public class InsertDataForTesting {
 		ic.setDestaque(false);
 		ic.setImagem("0003-comida.png");
 		itemCardapioRepository.save(ic);
-		
 	}
 		
 	}	
